@@ -9,6 +9,11 @@ return [
         'destroy' => 'Xóa',
     ],
     'modules' => [
+        'tour_categories' => 'Danh mục tour',
+        'tours' => 'Tour',
+        'room_categories' => 'Danh mục room',
+        'rooms' => 'Room',
+        // ================
         'category_articles' => 'Nhóm bài viết',
         'articles' => 'Bài viết',
         'category_media' => 'Nhóm media',
@@ -49,6 +54,30 @@ return [
     ],
     'customer_socials' => [
         'edit' => 'customer_socials_edit',
+    ],
+    'tour_categories' => [
+        'index' => 'tour_categories_index',
+        'create' => 'tour_categories_create',
+        'edit' => 'tour_categories_edit',
+        'destroy' => 'tour_categories_destroy',
+    ],
+    'tours' => [
+        'index' => 'tours_index',
+        'create' => 'tours_create',
+        'edit' => 'tours_edit',
+        'destroy' => 'tours_destroy',
+    ],
+    'room_categories' => [
+        'index' => 'room_categories_index',
+        'create' => 'room_categories_create',
+        'edit' => 'room_categories_edit',
+        'destroy' => 'room_categories_destroy',
+    ],
+    'rooms' => [
+        'index' => 'rooms_index',
+        'create' => 'rooms_create',
+        'edit' => 'rooms_edit',
+        'destroy' => 'rooms_destroy',
     ],
     'product_deals' => [
         'index' => 'product_deals_index',

@@ -13,6 +13,10 @@ class ConfigIsController extends Controller
     protected $module = 'configis';
     protected $type = ['ishome' => 'ishome', 'highlight' => 'highlight', 'isaside' => 'isaside', 'isfooter' => 'isfooter'];
     protected $table = [
+        'tours' => 'Tour',
+        'rooms' => 'Room',
+        'room_categories' => 'Danh mục Room',
+        'tour_categories' => 'Danh mục tour',
         'products' => 'Sản phẩm',
         'category_products' => 'Danh mục sản phẩm',
         'articles' => 'Bài viết',

@@ -1,5 +1,4 @@
 <?php
-
 if (!function_exists('svl_ismobile')) {
 
     function svl_ismobile()
@@ -207,44 +206,43 @@ if (!function_exists('htmlAddress')) {
         if (isset($data)) {
             foreach ($data as $k => $v) {
                 $html .= ' <li class="showroom-item loc_link result-item" data-brand="' . $v->title . '"
-    data-address="' . $v->address . '" data-phone="' . $v->hotline . '" data-lat="' . $v->lat . '"
-    data-long="' . $v->long . '">
-    <div class="heading" style="display: flex">
+                    data-address="' . $v->address . '" data-phone="' . $v->hotline . '" data-lat="' . $v->lat . '"
+                    data-long="' . $v->long . '">
+                    <div class="heading" style="display: flex">
 
-        <p class="name-label" style="flex: 1">
-            <strong>' . ($k + 1) . '. ' . $v->title . '</strong>
-        </p>
-    </div>
-    <div class="details">
-        <p class="address" style="flex:1"><em>' . $v->address . '</em>
-        </p>
+                        <p class="name-label" style="flex: 1">
+                            <strong>' . ($k + 1) . '. ' . $v->title . '</strong>
+                        </p>
+                    </div>
+                    <div class="details">
+                        <p class="address" style="flex:1"><em>' . $v->address . '</em>
+                        </p>
 
-        <p class="button-desktop button-view hidden-xs">
-            <a href="javascript:void(0)" onclick="return false;">Tìm đường</a>
-            <a class="arrow-right"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-        </p>
-        <p class="button-mobile button-view visible-xs">
-            <a target="_blank" href="https://www.google.com/maps/dir//' . $v->lat . ',' . $v->long . '">Tìm đường</a>
-            <a class="arrow-right" target="_blank"
-                href="https://www.google.com/maps/dir//' . $v->lat . ',' . $v->long . '"><span><i
-                        class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-        </p>
-    </div>
-</li>';
+                        <p class="button-desktop button-view hidden-xs">
+                            <a href="javascript:void(0)" onclick="return false;">Tìm đường</a>
+                            <a class="arrow-right"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                        </p>
+                        <p class="button-mobile button-view visible-xs">
+                            <a target="_blank" href="https://www.google.com/maps/dir//' . $v->lat . ',' . $v->long . '">Tìm đường</a>
+                            <a class="arrow-right" target="_blank"
+                                href="https://www.google.com/maps/dir//' . $v->lat . ',' . $v->long . '"><span><i
+                                        class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                        </p>
+                    </div>
+                </li>';
             }
         }
         return $html;
     }
 }
-
 /**HTML: item sản phẩm */
 if (!function_exists('htmlItemProduct')) {
     function htmlItemProduct($key = '', $item = [], $class = 'item item-product')
     {
-        $wishlist = isset($_COOKIE['wishlist']) ? json_decode($_COOKIE['wishlist'],TRUE) : NULL;
+        $wishlist = isset($_COOKIE['wishlist']) ? json_decode($_COOKIE['wishlist'], TRUE) : NULL;
         $i_class = 'fa-regular';
-        if(!empty($wishlist)){
-            if(in_array($item['id'], $wishlist)){
+        if (!empty($wishlist)) {
+            if (in_array($item['id'], $wishlist)) {
                 $i_class = 'fa-solid';
             }
         }
@@ -271,7 +269,7 @@ if (!function_exists('htmlItemProduct')) {
                                 <a href="' . $route . '"><img src="' . asset($listAlbums[1]) . '" class="object-cover w-full" alt="' . $item['title'] . '" /></a>
                             </div>
                             <div class="hear-icon absolute right-[10px] top-[10px] text-f20">
-                                <a href="javascript:void(0)" data-id="'.$item['id'].'" class="js_add_wishlist "><i class="'.$i_class.' fa-heart js_add_wishlist_'.$item['id'].'"></i></a>
+                                <a href="javascript:void(0)" data-id="' . $item['id'] . '" class="js_add_wishlist "><i class="' . $i_class . ' fa-heart js_add_wishlist_' . $item['id'] . '"></i></a>
                             </div>
                         </div>
                         <div class="nav-img p-4">';
@@ -299,7 +297,6 @@ if (!function_exists('htmlItemProduct')) {
         return $html;
     }
 }
-
 /**HTML: item sản phẩm bán kèm */
 if (!function_exists('htmlItemProductUpSell')) {
     function htmlItemProductUpSell($item = [])
@@ -309,7 +306,6 @@ if (!function_exists('htmlItemProductUpSell')) {
         $href = route('routerURL', ['slug', $item['slug']]);
         $img = !empty($item['image']) ? $item['image'] : 'images/404.png';
         $title = $item['title'];
-
         $html .= '<div class="product-item text-center pd-2 mb-6" style="border-bottom: 1px solid #ddd">
                     <div class="box-image">
                         <a href="' . $href . '"><img src="' . $img . '" alt="' . $title . '" height="90" width="90" style="display: inline-block;object-fit: contain"></a>

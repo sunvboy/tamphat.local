@@ -66,10 +66,14 @@ use App\Http\Controllers\product\backend\ProductDealController;
 use App\Http\Controllers\product\backend\ProductPurchaseController;
 use App\Http\Controllers\product\backend\ProductPurchaseReturnController;
 use App\Http\Controllers\product\backend\ProductTmpController;
+use App\Http\Controllers\room\backend\category\RoomCategoryController;
+use App\Http\Controllers\room\backend\category\RoomController;
 use App\Http\Controllers\ship\backend\ShipController;
 use App\Http\Controllers\suppliers\SuppliersCategoryController;
 use App\Http\Controllers\suppliers\SuppliersController;
 use App\Http\Controllers\tax\TaxController;
+use App\Http\Controllers\tour\backend\category\TourCategoryController;
+use App\Http\Controllers\tour\backend\category\TourController;
 use App\Http\Controllers\website\WebsiteController;
 use App\Models\SuppliersCategory;
 use Illuminate\Support\Facades\Route;
@@ -561,6 +565,36 @@ Route::group(['middleware' => 'locale'], function () {
         });
         //polylang
         Route::get('/search/autocomplete', [PolyLangController::class, 'autocomplete'])->name('search.autocomplete');
+        //tour
+        Route::group(['prefix' => '/tour-categories'], function () {
+            Route::get('index', [TourCategoryController::class, 'index'])->name('tour_categories.index')->middleware('can:tour_categories_index');
+            Route::get('create', [TourCategoryController::class, 'create'])->name('tour_categories.create')->middleware('can:tour_categories_create');
+            Route::post('store', [TourCategoryController::class, 'store'])->name('tour_categories.store')->middleware('can:tour_categories_create');
+            Route::get('edit/{id}', [TourCategoryController::class, 'edit'])->name('tour_categories.edit')->middleware('can:tour_categories_edit');
+            Route::post('update/{id}', [TourCategoryController::class, 'update'])->name('tour_categories.update')->middleware('can:tour_categories_edit');
+        });
+        Route::group(['prefix' => '/tours'], function () {
+            Route::get('index', [TourController::class, 'index'])->name('tours.index')->middleware('can:tours_index');
+            Route::get('create', [TourController::class, 'create'])->name('tours.create')->middleware('can:tours_create');
+            Route::post('store', [TourController::class, 'store'])->name('tours.store')->middleware('can:tours_create');
+            Route::get('edit/{id}', [TourController::class, 'edit'])->name('tours.edit')->middleware('can:tours_edit');
+            Route::post('update/{id}', [TourController::class, 'update'])->name('tours.update')->middleware('can:tours_edit');
+        });
+        //room
+        Route::group(['prefix' => '/room-categories'], function () {
+            Route::get('index', [RoomCategoryController::class, 'index'])->name('room_categories.index')->middleware('can:room_categories_index');
+            Route::get('create', [RoomCategoryController::class, 'create'])->name('room_categories.create')->middleware('can:room_categories_create');
+            Route::post('store', [RoomCategoryController::class, 'store'])->name('room_categories.store')->middleware('can:room_categories_create');
+            Route::get('edit/{id}', [RoomCategoryController::class, 'edit'])->name('room_categories.edit')->middleware('can:room_categories_edit');
+            Route::post('update/{id}', [RoomCategoryController::class, 'update'])->name('room_categories.update')->middleware('can:room_categories_edit');
+        });
+        Route::group(['prefix' => '/rooms'], function () {
+            Route::get('index', [RoomController::class, 'index'])->name('rooms.index')->middleware('can:rooms_index');
+            Route::get('create', [RoomController::class, 'create'])->name('rooms.create')->middleware('can:rooms_create');
+            Route::post('store', [RoomController::class, 'store'])->name('rooms.store')->middleware('can:rooms_create');
+            Route::get('edit/{id}', [RoomController::class, 'edit'])->name('rooms.edit')->middleware('can:rooms_edit');
+            Route::post('update/{id}', [RoomController::class, 'update'])->name('rooms.update')->middleware('can:rooms_edit');
+        });
     });
     Route::get('/language/{language}', [ComponentsController::class, 'language'])->name('components.language');
 });

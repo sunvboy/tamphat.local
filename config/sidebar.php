@@ -48,6 +48,46 @@ return [
             ],
         ]
     ],
+    //Tour
+    'tours' => [
+        'title' => 'Quản lý tour',
+        'data' => [
+            'tour_categories' =>  [
+                'can' => 'tour_categories',
+                'route' => 'tour_categories.index',
+                'menu' => ['tour-categories'],
+                'dropdown' => true,
+                'active' => true
+            ],
+            'tours' =>  [
+                'can' => 'tours',
+                'route' => 'tours.index',
+                'menu' => ['tours'],
+                'dropdown' => true,
+                'active' => true
+            ],
+        ]
+    ],
+    //Room
+    'rooms' => [
+        'title' => 'Quản lý room',
+        'data' => [
+            'room_categories' =>  [
+                'can' => 'room_categories',
+                'route' => 'room_categories.index',
+                'menu' => ['room-categories'],
+                'dropdown' => true,
+                'active' => true
+            ],
+            'rooms' =>  [
+                'can' => 'rooms',
+                'route' => 'rooms.index',
+                'menu' => ['rooms'],
+                'dropdown' => true,
+                'active' => true
+            ],
+        ]
+    ],
     //Sản phẩm
     'products' => [
         'title' => "Quản lý sản phẩm",

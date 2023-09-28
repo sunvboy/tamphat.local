@@ -1,12 +1,12 @@
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/app.css')); ?>" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/owl.theme.default.css')); ?>" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/owl.carousel.min.css')); ?>" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/animate.css')); ?>" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/_header.css')); ?>" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/_footer.css')); ?>" />
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/custom.css')); ?>" />
- <?php if(svl_ismobile() != 'is desktop'): ?>
- <link rel="stylesheet" href="<?php echo e(asset('frontend/css/demo.css')); ?>" async />
- <?php endif; ?>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js" integrity="sha512-ew6biq+ZLL9Oatatxp3TMwzqfYWjPNVj555KxiE2mV5Sc2/1Z5SOWSbViBH+KXU788ESsXDa5m0cgRKTBqO44w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><?php /**PATH D:\xampp\htdocs\chuan.local\resources\views/homepage/common/head.blade.php ENDPATH**/ ?>
+<link rel="stylesheet" href="<?php echo e(asset('frontend/css/bootstrap.min.css')); ?>" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo e(asset('frontend/css/slick.min.css')); ?>" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo e(asset('frontend/css/jquery.fancybox.min.css')); ?>" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo e(asset('frontend/css/all.min.css')); ?>" type="text/css" media="all" />
+<link rel="stylesheet" href="<?php echo e(asset('frontend/css/owl.carousel.min.css')); ?>" media="all" />
+<link href="<?php echo e(asset('frontend/css/owl.theme.default.css')); ?>" rel="stylesheet" />
+<link rel="stylesheet" media="all" href="<?php echo e(asset('frontend/css/datepicker.css')); ?>" />
+<link rel="stylesheet" media="all" href="<?php echo e(asset('frontend/css/linear-icons.css')); ?>" />
+<script type='text/javascript' src="<?php echo e(asset('frontend/js/jquery.min.js')); ?>"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700|Work+Sans:300,400,500,600,700" rel="stylesheet" />
+<link href="<?php echo e(asset('frontend/css/main.css')); ?>" type="text/css" rel="stylesheet" />
+<link href="<?php echo e(asset('frontend/css/style.css')); ?>" type="text/css" rel="stylesheet" /><?php /**PATH D:\xampp\htdocs\chuan.local\resources\views/homepage/common/head.blade.php ENDPATH**/ ?>

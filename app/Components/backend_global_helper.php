@@ -43,6 +43,14 @@ if (!function_exists('CodeRender')) {
                 $lastRow = \App\Models\ProductPurchase::orderBy('id', 'DESC')->first();
                 $str = 'PON';
                 break;
+            case "tours":
+                $lastRow = \App\Models\Tour::orderBy('id', 'DESC')->first();
+                $str = 'TOU';
+                break;
+            case "rooms":
+                $lastRow = \App\Models\Room::orderBy('id', 'DESC')->first();
+                $str = 'ROO';
+                break;
             case "payment_vouchers":
                 $lastRow = \App\Models\PaymentVouchers::orderBy('id', 'DESC')->first();
                 $str = 'PVN';

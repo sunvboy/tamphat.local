@@ -39,31 +39,33 @@
     <?php echo $fcSystem['script_header'] ?>
 </head>
 
-<body>
-    <?php echo $__env->make('homepage.common.cache', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('homepage.common.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->yieldContent('content'); ?>
-    <?php echo $__env->make('homepage.common.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php /*@include('homepage.common.loading')*/ ?>
-    <?php echo $__env->make('homepage.common.cart', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=2586825361606351&autoLogAppEvents=1" nonce="OCqVGwdA"></script>
-    <?php if(session('error') || session('success')): ?>
-    <?php if(session('success')): ?>
-    <script>
-        toastr.success('<?php echo session('success') ?>', '<?php echo trans('index.Notify') ?>')
-    </script>
-    <?php endif; ?>
-    <?php if(session('error')): ?>
-    <script>
-        toastr.error('<?php echo session('error') ?>', 'Error!')
-    </script>
-    <?php endif; ?>
-    <?php endif; ?>
-    <?php echo $__env->make('homepage.common.scrollUp', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $fcSystem['script_footer'] ?>
-    <?php echo $__env->yieldPushContent('javascript'); ?>
 
+<body class="home">
+    <div id="page" class="site">
+        <?php echo $__env->make('homepage.common.cache', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('homepage.common.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->yieldContent('content'); ?>
+        <?php echo $__env->make('homepage.common.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php /*@include('homepage.common.loading')@include('homepage.common.cart')
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=2586825361606351&autoLogAppEvents=1" nonce="OCqVGwdA"></script>
+        @if(session('error') || session('success'))
+        @if(session('success'))
+        <script>
+            toastr.success('<?php echo session('success') ?>', '<?php echo trans('index.Notify') ?>')
+        </script>
+        @endif
+        @if(session('error'))
+        <script>
+            toastr.error('<?php echo session('error') ?>', 'Error!')
+        </script>
+        @endif
+        @endif
+        @include('homepage.common.scrollUp')
+        <?php echo $fcSystem['script_footer'] ?>
+        @stack('javascript')*/ ?>
+
+    </div>
 </body>
 
 </html><?php /**PATH D:\xampp\htdocs\chuan.local\resources\views/homepage/layout/home.blade.php ENDPATH**/ ?>

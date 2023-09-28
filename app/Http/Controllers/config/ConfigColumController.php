@@ -12,6 +12,8 @@ class ConfigColumController extends Controller
 {
     protected $module = 'config_colums';
     protected $table = [
+        'tours' => 'Tour',
+        'rooms' => 'Room',
         'products' => 'Sản phẩm',
         'category_products' => 'Danh mục sản phẩm',
         'articles' => 'Bài viết',

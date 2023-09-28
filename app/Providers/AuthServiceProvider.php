@@ -33,11 +33,15 @@ use App\Policies\PaymentVouchersPolicy;
 use App\Policies\ProductDealPolicy;
 use App\Policies\ProductPurchasePolicy;
 use App\Policies\ReceiptVouchersPolicy;
+use App\Policies\RoomCategoryPolicy;
+use App\Policies\RoomPolicy;
 use App\Policies\ShipPolicy;
 use App\Policies\SuppliersCategoryPolicy;
 use App\Policies\SuppliersPolicy;
 use App\Policies\WebsitePolicy;
 use App\Policies\TaxPolicy;
+use App\Policies\TourCategoryPolicy;
+use App\Policies\TourPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -102,6 +106,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->getReceiptVouchers();
         $this->getProductDeals();
         $this->getCustomerSocials();
+        $this->getTourCategories();
+        $this->getTours();
+        $this->getRoomCategories();
+        $this->getRooms();
         // Gate::define('category_products_index', function ($user) {
         //     return $user->checkPermissionAccess(config('permissions.category_products.index'));
         // });
@@ -351,5 +359,34 @@ class AuthServiceProvider extends ServiceProvider
     public function getCustomerSocials()
     {
         Gate::define('customer_socials_edit', [CustomerSocialPolicy::class, 'edit']);
+    }
+    //Tour
+    public function getTourCategories()
+    {
+        Gate::define('tour_categories_index', [TourCategoryPolicy::class, 'index']);
+        Gate::define('tour_categories_create', [TourCategoryPolicy::class, 'create']);
+        Gate::define('tour_categories_edit', [TourCategoryPolicy::class, 'edit']);
+        Gate::define('tour_categories_destroy', [TourCategoryPolicy::class, 'destroy']);
+    }
+    public function getTours()
+    {
+        Gate::define('tours_index', [TourPolicy::class, 'index']);
+        Gate::define('tours_create', [TourPolicy::class, 'create']);
+        Gate::define('tours_edit', [TourPolicy::class, 'edit']);
+        Gate::define('tours_destroy', [TourPolicy::class, 'destroy']);
+    }
+    public function getRoomCategories()
+    {
+        Gate::define('room_categories_index', [RoomCategoryPolicy::class, 'index']);
+        Gate::define('room_categories_create', [RoomCategoryPolicy::class, 'create']);
+        Gate::define('room_categories_edit', [RoomCategoryPolicy::class, 'edit']);
+        Gate::define('room_categories_destroy', [RoomCategoryPolicy::class, 'destroy']);
+    }
+    public function getRooms()
+    {
+        Gate::define('rooms_index', [RoomPolicy::class, 'index']);
+        Gate::define('rooms_create', [RoomPolicy::class, 'create']);
+        Gate::define('rooms_edit', [RoomPolicy::class, 'edit']);
+        Gate::define('rooms_destroy', [RoomPolicy::class, 'destroy']);
     }
 }

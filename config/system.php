@@ -82,8 +82,25 @@ $data['title'] =  array(
     'label' => 'Tiêu đề',
     'description' => '',
     'value' => array(
-        '1' => array('type' => 'text', 'label' => 'THIS WEEKS NEW ARRIVALS'),
-        '2' => array('type' => 'text', 'label' => 'YOU MAY ALSO LIKE'),
+        '1' => array('type' => 'editor', 'label' => 'Ticket booking and cancellation policy:'),
+        'Children' => array('type' => 'text', 'label' => 'Children'),
+        'Adults' => array('type' => 'text', 'label' => 'Adults'),
+        'carts' => array('type' => 'text', 'label' => 'CARS & MOTORBIKE FOR RENT'),
+        'carts_description' => array('type' => 'editor', 'label' => 'CARS & MOTORBIKE FOR RENT DESCRIPTION'),
+        'carts_link' => array('type' => 'text', 'label' => 'CARS & MOTORBIKE FOR RENT LINK'),
+        // '2' => array('type' => 'text', 'label' => 'YOU MAY ALSO LIKE'),
+    ),
+);
+$data['pdf'] =  array(
+    'label' => 'Bar & Restaurant',
+    'description' => '',
+    'value' => array(
+        '0' => array('type' => 'images', 'label' => 'Bar & Restaurant background'),
+        '1' => array('type' => 'text', 'label' => 'Bar & Restaurant'),
+        '2' => array('type' => 'editor', 'label' => 'Bar & Restaurant description'),
+        '3' => array('type' => 'files', 'label' => 'File Food menu'),
+        '4' => array('type' => 'files', 'label' => 'File drink menu'),
+        // '2' => array('type' => 'text', 'label' => 'YOU MAY ALSO LIKE'),
     ),
 );
 // $data['banner'] =  array(
@@ -95,13 +112,13 @@ $data['title'] =  array(
 //         '2' => array('type' => 'images', 'label' => 'Hình ảnh tại sao chọn chúng tôi'),
 //     ),
 // );
-$data['cart'] =  array(
-    'label' => 'Đơn hàng',
-    'description' => '',
-    'value' => array(
-        '1' => array('type' => 'editor', 'label' => 'Đặt hàng thành công'),
-    ),
-);
+// $data['cart'] =  array(
+//     'label' => 'Đơn hàng',
+//     'description' => '',
+//     'value' => array(
+//         '1' => array('type' => 'editor', 'label' => 'Đặt hàng thành công'),
+//     ),
+// );
 
 // $data['404'] =  array(
 //     'label' => '404',

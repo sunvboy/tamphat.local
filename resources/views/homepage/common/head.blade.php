@@ -1,12 +1,12 @@
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
- <link rel="stylesheet" href="{{asset('frontend/css/app.css')}}" />
- <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.css')}}" />
- <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}" />
- <link rel="stylesheet" href="{{asset('frontend/css/animate.css')}}" />
- <link rel="stylesheet" href="{{asset('frontend/css/_header.css')}}" />
- <link rel="stylesheet" href="{{asset('frontend/css/_footer.css')}}" />
- <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}" />
- @if(svl_ismobile() != 'is desktop')
- <link rel="stylesheet" href="{{ asset('frontend/css/demo.css') }}" async />
- @endif
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js" integrity="sha512-ew6biq+ZLL9Oatatxp3TMwzqfYWjPNVj555KxiE2mV5Sc2/1Z5SOWSbViBH+KXU788ESsXDa5m0cgRKTBqO44w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{asset('frontend/css/slick.min.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{asset('frontend/css/jquery.fancybox.min.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{asset('frontend/css/all.min.css')}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}" media="all" />
+<link href="{{asset('frontend/css/owl.theme.default.css')}}" rel="stylesheet" />
+<link rel="stylesheet" media="all" href="{{asset('frontend/css/datepicker.css')}}" />
+<link rel="stylesheet" media="all" href="{{asset('frontend/css/linear-icons.css')}}" />
+<script type='text/javascript' src="{{asset('frontend/js/jquery.min.js')}}"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700|Work+Sans:300,400,500,600,700" rel="stylesheet" />
+<link href="{{asset('frontend/css/main.css')}}" type="text/css" rel="stylesheet" />
+<link href="{{asset('frontend/css/style.css')}}" type="text/css" rel="stylesheet" />

@@ -34,35 +34,23 @@ class HomeController extends Controller
     public function index()
     {
         $fcSystem = $this->system->fcSystem();
-        $slideHome = Cache::remember('slideHome', 10000, function () {
-            $slideHome = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'bannerHome'])->with('slides')->first();
-            return $slideHome;
-        });
-        $partner = Cache::remember('partner', 10000, function () {
-            $partner = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'partner'])->with('slides')->first();
-            return $partner;
-        });
-        $cpOne = Cache::remember('cpOne', 10000, function () {
-            $cpOne = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'cp-one'])->with('slides')->first();
-            return $cpOne;
-        });
-        $cpTwo = Cache::remember('cpTwo', 10000, function () {
-            $cpTwo = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'cp-two'])->with('slides')->first();
-            return $cpTwo;
-        });
-        $cpThree = Cache::remember('cpThree', 10000, function () {
-            $cpThree = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'cp-three'])->with('slides')->first();
-            return $cpThree;
-        });
-        $cpFour = Cache::remember('cpFour', 10000, function () {
-            $cpFour = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'cp-four'])->with('slides')->first();
-            return $cpFour;
-        });
-        $ishomeCategoryProduct =
-            \App\Models\CategoryProduct::select('id', 'title', 'slug')
+        $slideHome = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'bannerHome'])->with('slides')->first();
+
+        $with = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'with'])->with('slides')->first();
+        $cars = \App\Models\CategorySlide::select('title', 'id')->where(['alanguage' => config('app.locale'), 'keyword' => 'cars'])->with('slides')->first();
+
+
+        $ishomeCategoryRoom =
+            \App\Models\RoomCategory::select('id', 'title', 'slug')
             ->where(['alanguage' => config('app.locale'), 'publish' => 0, 'ishome' => 1])
-            ->orderBy('order', 'asc')
-            ->orderBy('id', 'desc')
+            ->with(['rooms' => function ($q) {
+                $q->orderBy('order', 'asc')->orderBy('id', 'desc');
+            }])
+            ->first();
+        $ishomeCategoryTour =
+            \App\Models\TourCategory::select('id', 'title', 'slug', 'description')
+            ->where(['alanguage' => config('app.locale'), 'publish' => 0, 'ishome' => 1])
+            ->orderBy('order', 'asc')->orderBy('id', 'desc')
             ->get();
         /*
         $homeNews =
@@ -99,7 +87,7 @@ class HomeController extends Controller
         $seo['meta_title'] = !empty($page['meta_title']) ? $page['meta_title'] : $page['title'];
         $seo['meta_description'] = !empty($page['meta_description']) ? $page['meta_description'] : '';
         $seo['meta_image'] = !empty($page['image']) ? url($page['image']) : '';
-        return view('homepage.home.index', compact('page', 'seo', 'fcSystem', 'slideHome', 'partner', 'cpOne', 'cpTwo', 'cpThree', 'fields', 'cpFour', 'ishomeCategoryProduct'));
+        return view('homepage.home.index', compact('page', 'seo', 'fcSystem', 'slideHome', 'with', 'cars', 'ishomeCategoryRoom', 'ishomeCategoryTour', 'ishomeCategoryTour'));
     }
 
     public function sitemap()
@@ -112,9 +100,9 @@ class HomeController extends Controller
     }
     public function wishlist_index()
     {
-        $wishlist = isset($_COOKIE['wishlist']) ? json_decode($_COOKIE['wishlist'],TRUE) : NULL;
+        $wishlist = isset($_COOKIE['wishlist']) ? json_decode($_COOKIE['wishlist'], TRUE) : NULL;
 
-        if(!empty($wishlist)){
+        if (!empty($wishlist)) {
             $data = \App\Models\Product::select('products.id', 'products.title', 'products.image_json', 'products.image', 'products.slug', 'products.price', 'products.price_sale', 'products.price_contact')
                 ->where(['products.alanguage' => config('app.locale'), 'products.publish' => 0])
                 ->whereIn('products.id', $wishlist)
@@ -122,7 +110,7 @@ class HomeController extends Controller
                 ->orderBy('products.id', 'desc')
                 ->with('getTags')
                 ->get();
-        }else{
+        } else {
             $data = [];
         }
 
@@ -131,31 +119,31 @@ class HomeController extends Controller
         $seo['canonical'] = route('homepage.wishlist_index');
         $seo['meta_title'] = "Danh sách sản phẩm yêu thích";
         $seo['meta_description'] = "Danh sách sản phẩm yêu thích";
-        return view('homepage.home.wishlist', compact('seo', 'fcSystem','data'));
+        return view('homepage.home.wishlist', compact('seo', 'fcSystem', 'data'));
     }
     public function wishlist(Request $request)
     {
-        $wishlist = isset($_COOKIE['wishlist']) ? json_decode($_COOKIE['wishlist'],TRUE) : NULL;
+        $wishlist = isset($_COOKIE['wishlist']) ? json_decode($_COOKIE['wishlist'], TRUE) : NULL;
         $quantity = $wishlist ? count($wishlist) : 0;
         $productID = $request->id;
-        if(!empty($wishlist)){
-            if(in_array($request->id, $wishlist)){
+        if (!empty($wishlist)) {
+            if (in_array($request->id, $wishlist)) {
                 $filtered = collect($wishlist)->filter(function ($value, $key) use ($productID) {
                     return $value != $productID;
                 });
                 $quantity--;
                 setcookie('wishlist', json_encode($filtered), time() + (86400 * 30), '/');
-                return response()->json(['message'=>'Xóa sản phẩm khỏi Danh sách sản phẩm yêu thích thành công','status' => 400,'quantity' => $quantity]);
-            }else{
+                return response()->json(['message' => 'Xóa sản phẩm khỏi Danh sách sản phẩm yêu thích thành công', 'status' => 400, 'quantity' => $quantity]);
+            } else {
                 $cookie = collect($wishlist)->push($request->id)->all();
                 $quantity++;
                 setcookie('wishlist', json_encode($cookie), time() + (86400 * 30), '/');
-                return response()->json(['message'=>'Thêm sản phẩm vào Danh sách sản phẩm yêu thích thành công','status' => 200,'quantity' => $quantity]);
+                return response()->json(['message' => 'Thêm sản phẩm vào Danh sách sản phẩm yêu thích thành công', 'status' => 200, 'quantity' => $quantity]);
             }
-        }else{
+        } else {
             $quantity++;
             setcookie('wishlist', json_encode(array($request->id)), time() + (86400 * 30), '/');
-            return response()->json(['message'=>'Thêm sản phẩm vào Danh sách sản phẩm yêu thích thành công','status' => 200,'quantity' => $quantity]);
+            return response()->json(['message' => 'Thêm sản phẩm vào Danh sách sản phẩm yêu thích thành công', 'status' => 200, 'quantity' => $quantity]);
         }
     }
 }

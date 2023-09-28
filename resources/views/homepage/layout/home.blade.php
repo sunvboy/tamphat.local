@@ -39,31 +39,33 @@
     <?php echo $fcSystem['script_header'] ?>
 </head>
 
-<body>
-    @include('homepage.common.cache')
-    @include('homepage.common.header')
-    @yield('content')
-    @include('homepage.common.footer')
-    <?php /*@include('homepage.common.loading')*/ ?>
-    @include('homepage.common.cart')
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=2586825361606351&autoLogAppEvents=1" nonce="OCqVGwdA"></script>
-    @if(session('error') || session('success'))
-    @if(session('success'))
-    <script>
-        toastr.success('<?php echo session('success') ?>', '<?php echo trans('index.Notify') ?>')
-    </script>
-    @endif
-    @if(session('error'))
-    <script>
-        toastr.error('<?php echo session('error') ?>', 'Error!')
-    </script>
-    @endif
-    @endif
-    @include('homepage.common.scrollUp')
-    <?php echo $fcSystem['script_footer'] ?>
-    @stack('javascript')
 
+<body class="home">
+    <div id="page" class="site">
+        @include('homepage.common.cache')
+        @include('homepage.common.header')
+        @yield('content')
+        @include('homepage.common.footer')
+        <?php /*@include('homepage.common.loading')@include('homepage.common.cart')
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0&appId=2586825361606351&autoLogAppEvents=1" nonce="OCqVGwdA"></script>
+        @if(session('error') || session('success'))
+        @if(session('success'))
+        <script>
+            toastr.success('<?php echo session('success') ?>', '<?php echo trans('index.Notify') ?>')
+        </script>
+        @endif
+        @if(session('error'))
+        <script>
+            toastr.error('<?php echo session('error') ?>', 'Error!')
+        </script>
+        @endif
+        @endif
+        @include('homepage.common.scrollUp')
+        <?php echo $fcSystem['script_footer'] ?>
+        @stack('javascript')*/ ?>
+
+    </div>
 </body>
 
 </html>
